@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/iv_result_page_bg"
+    android:fillViewport="true"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="RESULT"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center_horizontal" />
+
+    <ImageView
+        android:id="@+id/iv_throphy"
+        android:layout_width="wrap_content"
+        android:layout_height="324dp"
+        android:contentDescription="image"
+        android:src="@drawable/iv_throphy" />
+
+    <TextView
+        android:id="@+id/tv_congratulations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CONGRATULATIONS"
+        android:textColor="@color/white"
+        android:textSize="37sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_bold">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textColor="@android:color/white"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_bold"
+        tools:text="Username">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        tools:text="Your score is 9 out of 10"
+        />
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        android:text="FINISH"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:background="@drawable/edittext_black_border"
+        />
+
+</LinearLayout>
