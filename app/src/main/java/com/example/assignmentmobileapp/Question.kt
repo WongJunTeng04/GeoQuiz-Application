@@ -3,6 +3,7 @@ package com.example.assignmentmobileapp
 data class Question(
     val id: Int,
     val question: String,
+    val hint: String,
     val image: Int,
     val option1: String,
     val option2: String,

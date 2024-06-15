@@ -43,18 +43,6 @@
     </TextView>
 
     <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textColor="@android:color/white"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/poppins_bold"
-        tools:text="Username">
-    </TextView>
-
-    <TextView
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,7 +51,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:fontFamily="@font/poppins"
-        tools:text="Your score is 9 out of 10"
+        tools:text="Your score is 0 out of 0"
         />
 
     <Button
@@ -77,7 +65,7 @@
         android:textSize="20sp"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
-        android:background="@drawable/edittext_black_border"
+        android:background="@color/white"
         />
 
 </LinearLayout>

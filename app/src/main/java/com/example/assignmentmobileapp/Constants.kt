@@ -1,12 +1,17 @@
 package com.example.assignmentmobileapp
 
 object Constants {
+
+    const val TOTAL_QUESTIONS: String = "total_question"
+    const val CORRECT_ANSWERS: String = "correct_answers"
+
     fun getQuestions(): ArrayList<Question> {
         val questionsList = ArrayList<Question>()
 
         val question1 = Question(
             1,
             "Which country does this flag belong to?",
+            "LEGO originated from this country.",
             R.drawable.denmark_flag,
             "Argentina",
             "Australia",
@@ -19,6 +24,7 @@ object Constants {
         val question2 = Question(
             2,
             "What is the name of the largest country in the world?",
+            "The largest cat species is found here too: Siberian Tiger",
             R.drawable.world_map,
             "Argentina",
             "Russia",
@@ -31,18 +37,20 @@ object Constants {
         val question3 = Question(
             3,
             "What country does this flag belong to?",
-            R.drawable.denmark_flag,
+            "Messi won the world cup in 2022 in this country.",
+            R.drawable.iv_argentina_flag,
             "Argentina",
             "Australia",
             "Malaysia",
             "Denmark",
-            4
+            1
         )
         questionsList.add(question3)
 
         val question4 = Question(
             4,
-            "What country does this flag belong to?",
+            "This country has the highest population in the world:",
+            "Country famous for the Great Wall",
             R.drawable.denmark_flag,
             "Bahamas",
             "Belgium",
@@ -55,6 +63,7 @@ object Constants {
         val question5 = Question(
             5,
             "Pho, which contains beef, herbs, rice noodles, and broth is a traditional dish in which asian country",
+            "Also famous for their exotic street food consisting of insects.",
             R.drawable.denmark_flag,
             "Vietnam",
             "China",
@@ -64,6 +73,70 @@ object Constants {
         )
         questionsList.add(question5)
 
+        val question6 = Question(
+            6,
+            "Which country has the largest Muslim population in the world? ",
+            "Home to the world's largest flower: Rafflesia Arnoldii",
+            R.drawable.denmark_flag,
+            "Iraq",
+            "Indonesia",
+            "Kuwait",
+            "Lebanon",
+            2
+        )
+        questionsList.add(question6)
+
+        val question7 = Question(
+            7,
+            "What country does this flag belong to?",
+            "Nestled between Iraq and Saudi Arabia",
+            R.drawable.denmark_flag,
+            "Malaysia",
+            "Indonesia",
+            "Kuwait",
+            "Lebanon",
+            3
+        )
+        questionsList.add(question7)
+
+        val question8 = Question(
+            8,
+            "Which country is often called the Land of the Rising Sun?",
+            "This country is famous for it's own spin on cartoons called Anime",
+            R.drawable.denmark_flag,
+            "Japan",
+            "China",
+            "Malaysia",
+            "Thailand",
+            1
+        )
+        questionsList.add(question8)
+
+        val question9 = Question(
+            9,
+            "What country does this flag belong to?",
+            "Home to the Pyramids of Giza",
+            R.drawable.denmark_flag,
+            "Egypt",
+            "Singapore",
+            "Germany",
+            "Poland",
+            1
+        )
+        questionsList.add(question9)
+
+        val question10 = Question(
+            10,
+            "What country is this flag from?",
+            "One of the world's largest exporters of natural gas",
+            R.drawable.denmark_flag,
+            "Japan",
+            "China",
+            "Qatar",
+            "Thailand",
+            3
+        )
+        questionsList.add(question10)
 
         return questionsList
     }
