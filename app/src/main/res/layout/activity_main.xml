@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/earth"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/poppins_black_italic"
+        android:text="GeoQuiz"
+        android:textColor="@android:color/white"
+        android:textSize="80sp"
+        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:id="@+id/iv_earth"
+        android:layout_width="match_parent"
+        android:layout_height="253dp"
+        android:layout_gravity="center"
+        android:src="@drawable/geoquizlogo" />
+
+    <Button
+    android:id="@+id/startButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Start"
+    android:layout_weight="0.01"
+    android:layout_margin="2dp" />
+
+    <Button
+        android:id="@+id/historyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="History"
+        android:layout_weight="0.01"
+        android:layout_margin="2dp" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:layout_weight="0.01"
+        android:layout_margin="2dp" />
+
+
+</LinearLayout>
+
