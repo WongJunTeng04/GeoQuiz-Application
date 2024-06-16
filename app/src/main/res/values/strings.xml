@@ -2,4 +2,6 @@
     <string name="app_name">AssignmentMobileApp</string>
     <string name="title_activity_quiz_questions">QuizQuestionsActivity</string>
     <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_cheat">CheatActivity</string>
+    <string name="cheat_activity_label">Cheat</string>
 </resources>

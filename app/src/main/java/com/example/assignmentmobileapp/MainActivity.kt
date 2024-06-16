@@ -1,22 +1,10 @@
 package com.example.assignmentmobileapp
 
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.assignmentmobileapp.ui.theme.AssignmentMobileAppTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val startButton: Button = findViewById(R.id.startButton)
+        val leaveButton : Button = findViewById(R.id.leaveButton)
 
         startButton.setOnClickListener {
             val intent = Intent(this, QuizQuestionsActivity::class.java)
@@ -31,7 +20,10 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-
+        leaveButton.setOnClickListener {
+            Toast.makeText(this, "Thank you for your time", Toast.LENGTH_SHORT).show()
+            finish()
+        }
 
     }
 }

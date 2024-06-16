@@ -1,5 +1,6 @@
 package com.example.assignmentmobileapp
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -19,7 +20,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mQuestionsList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
+    private var mIsCheater: Boolean = false
+    private var cheatTokens: Int = 3
 
+    private lateinit var btnPrevious: Button
+    private lateinit var btnNext: Button
     private lateinit var btnHint: Button
     private lateinit var hintCard: CardView
     private lateinit var tvHint: TextView
@@ -28,11 +33,29 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var tvOptionThree: TextView
     private lateinit var tvOptionFour: TextView
     private lateinit var btnSubmit: Button
+    private lateinit var btnCheat: Button
+    private lateinit var tvCheatTokens: TextView
+
+    companion object {
+        private const val REQUEST_CODE_CHEAT = 0
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_questions)
+
+        tvCheatTokens = findViewById(R.id.tv_cheat_tokens)
+        updateCheatTokens()
+
+        if (savedInstanceState != null) {
+            mIsCheater = savedInstanceState.getBoolean("mIsCheater")
+            cheatTokens = savedInstanceState.getInt("cheatTokens")
+        }
+
         // Initialize views
+        btnPrevious = findViewById(R.id.btn_previous)
+        btnNext = findViewById(R.id.btn_next)
+        btnCheat = findViewById(R.id.btn_cheat)
         btnHint = findViewById(R.id.hint)
         hintCard = findViewById(R.id.hint_card)
         tvHint = findViewById(R.id.tv_hint)
@@ -46,6 +69,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         setQuestion()
 
         // Set click listeners
+        btnPrevious.setOnClickListener(this)
+        btnNext.setOnClickListener(this)
+        btnCheat.setOnClickListener(this)
         btnHint.setOnClickListener(this)
         hintCard.setOnClickListener(this)
         tvOptionOne.setOnClickListener(this)
@@ -58,6 +84,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private fun setQuestion() {
         val question = mQuestionsList!![mCurrentPosition - 1]
         defaultOptionsView()
+
+        btnPrevious.visibility = if (mCurrentPosition > 1) View.VISIBLE else View.GONE
 
         if (mCurrentPosition == mQuestionsList!!.size) {
             btnSubmit.text = "FINISH"
@@ -92,7 +120,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         defaultOptionsView() // Call to reset options view
     }
 
-    //Setting how the default options will look like when going to the next question
     private fun defaultOptionsView() {
         val options = ArrayList<TextView>()
         options.add(tvOptionOne)
@@ -104,12 +131,31 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             option.setBackgroundResource(R.drawable.style_default_option_border_bg)
             option.setTextColor(Color.parseColor("#7A8089"))
             option.setTypeface(null, Typeface.NORMAL)
-            option.background = ContextCompat.getDrawable(this, R.drawable.style_default_option_border_bg)
+            option.background =
+                ContextCompat.getDrawable(this, R.drawable.style_default_option_border_bg)
         }
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
+            R.id.btn_previous -> {
+                mCurrentPosition--
+                setQuestion()
+            }
+
+            R.id.btn_next -> {
+                mCurrentPosition++
+                setQuestion()
+            }
+
+            R.id.btn_cheat -> {
+                if (cheatTokens > 0) {
+                    cheatTokens--
+                    updateCheatTokens()
+                    selectCorrectAnswer()
+                }
+            }
+
             R.id.hint -> {
                 hintCard.visibility = View.VISIBLE
                 val question = mQuestionsList!![mCurrentPosition - 1]
@@ -142,7 +188,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     when {
                         mCurrentPosition <= mQuestionsList!!.size -> {
                             setQuestion()
-                        }else -> {
+                        }
+
+                        else -> {
                             val intent = Intent(this, ResultActivity::class.java)
                             intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
                             intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
@@ -195,5 +243,36 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv.setTextColor(Color.parseColor("#363A43"))
         tv.setTypeface(tv.typeface, Typeface.BOLD)
         tv.background = ContextCompat.getDrawable(this, R.drawable.style_selected_option_border_bg)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("mIsCheater", mIsCheater)
+        outState.putInt("cheatTokens", cheatTokens)
+    }
+
+    private fun selectCorrectAnswer() {
+        val question = mQuestionsList!![mCurrentPosition - 1]
+        when (question.correctAnswer) {
+            1 -> {
+                selectedOptionView(tvOptionOne, 1)
+            }
+            2 -> {
+                selectedOptionView(tvOptionTwo, 2)
+            }
+            3 -> {
+                selectedOptionView(tvOptionThree, 3)
+            }
+            4 -> {
+                selectedOptionView(tvOptionFour, 4)
+            }
+        }
+    }
+
+    private fun updateCheatTokens() {
+        tvCheatTokens.text = "Cheat Tokens: $cheatTokens"
+        if (cheatTokens <= 0) {
+            btnCheat.isEnabled = false
+        }
     }
 }

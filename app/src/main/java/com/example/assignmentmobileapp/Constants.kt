@@ -36,7 +36,7 @@ object Constants {
 
         val question3 = Question(
             3,
-            "What country does this flag belong to?",
+            "Which country does this flag belong to?",
             "Messi won the world cup in 2022 in this country.",
             R.drawable.iv_argentina_flag,
             "Argentina",
@@ -62,7 +62,7 @@ object Constants {
 
         val question5 = Question(
             5,
-            "Pho, which contains beef, herbs, rice noodles, and broth is a traditional dish in which asian country",
+            "Pho, is a traditional dish in which asian country?",
             "Also famous for their exotic street food consisting of insects.",
             R.drawable.iv_denmark_flag,
             "Vietnam",
@@ -88,7 +88,7 @@ object Constants {
 
         val question7 = Question(
             7,
-            "What country does this flag belong to?",
+            "Which country does this flag belong to?",
             "Nestled between Iraq and Saudi Arabia",
             R.drawable.iv_denmark_flag,
             "Malaysia",
@@ -114,7 +114,7 @@ object Constants {
 
         val question9 = Question(
             9,
-            "What country does this flag belong to?",
+            "Which country does this flag belong to?",
             "Home to the Pyramids of Giza",
             R.drawable.iv_denmark_flag,
             "Egypt",
@@ -138,6 +138,7 @@ object Constants {
         )
         questionsList.add(question10)
 
+        questionsList.shuffle()
         return questionsList
     }
 }

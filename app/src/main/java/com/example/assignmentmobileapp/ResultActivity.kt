@@ -8,9 +8,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class ResultActivity : AppCompatActivity() {
+
+    private lateinit var btnReset : Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
+
+        btnReset = findViewById(R.id.btn_reset)
+        btnReset.setOnClickListener {
+            val intent = Intent(this, QuizQuestionsActivity::class.java)
+            startActivity(intent)
+        }
 
         val tvScore: TextView = findViewById(R.id.tv_score)
         val btnFinish: Button = findViewById(R.id.btn_finish)
@@ -26,4 +35,5 @@ class ResultActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
+
 }
