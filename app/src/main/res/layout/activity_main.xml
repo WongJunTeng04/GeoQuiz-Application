@@ -1,57 +1,82 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/earth"
-    android:fitsSystemWindows="true"
+    android:fillViewport="true"
+    android:background="@color/purple_700"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tv_app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/poppins_black_italic"
-        android:text="GeoQuiz"
-        android:textColor="@android:color/white"
-        android:textSize="80sp"
-        android:textStyle="bold|italic" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="5dp">
 
-    <ImageView
-        android:id="@+id/iv_earth"
-        android:layout_width="match_parent"
-        android:layout_height="253dp"
-        android:layout_gravity="center"
-        android:src="@drawable/geoquizlogo" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/poppins_black_italic"
+                    android:gravity="center"
+                    android:text="GeoQuiz"
+                    android:textColor="@color/white"
+                    android:textSize="80sp" />
 
-    <Button
-    android:id="@+id/startButton"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Start"
-    android:layout_weight="0.01"
-    android:layout_margin="2dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_black_italic"
+                    android:gravity="center"
+                    android:text="Unearth Knowledge, One Quiz at a Time"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/historyButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="History"
-        android:layout_weight="0.01"
-        android:layout_margin="2dp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="5dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="Logo"
+                    android:padding="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/iv_geoquizlogo" />
 
-    <Button
-        android:id="@+id/exitButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Exit"
-        android:layout_weight="0.01"
-        android:layout_margin="2dp" />
+                <Button
+                    android:id="@+id/startButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@color/teal_700"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="START"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@color/teal_700"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="HISTORY"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:background="@color/teal_700"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="EXIT"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+        </LinearLayout>
 </LinearLayout>
-

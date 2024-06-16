@@ -33,7 +33,7 @@
             android:layout_marginTop="5dp"
             android:maxHeight="200dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/denmark_flag"
+            android:src="@drawable/iv_denmark_flag"
             android:scaleType="centerCrop"
             android:padding="5dp" />
 
@@ -79,7 +79,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/poppins"
             android:textStyle="bold"
-            android:background="@drawable/edittext_black_border"
+            android:background="@drawable/style_edittext_black_border"
             android:text="Hint" />
 
         <!-- Hint CardView -->
@@ -108,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/default_option_border_bg"
+            android:background="@drawable/style_default_option_border_bg"
             android:gravity="center"
             android:padding="7dp"
             android:textColor="@color/black"
@@ -121,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/default_option_border_bg"
+            android:background="@drawable/style_default_option_border_bg"
             android:gravity="center"
             android:padding="7dp"
             android:textColor="@color/black"
@@ -134,7 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/default_option_border_bg"
+            android:background="@drawable/style_default_option_border_bg"
             android:gravity="center"
             android:padding="7dp"
             android:textColor="@color/black"
@@ -147,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/default_option_border_bg"
+            android:background="@drawable/style_default_option_border_bg"
             android:gravity="center"
             android:padding="7dp"
             android:textColor="@color/black"

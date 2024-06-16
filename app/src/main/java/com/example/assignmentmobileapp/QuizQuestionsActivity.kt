@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -102,10 +101,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         options.add(tvOptionFour)
 
         for (option in options) {
-            option.setBackgroundResource(R.drawable.default_option_border_bg)
+            option.setBackgroundResource(R.drawable.style_default_option_border_bg)
             option.setTextColor(Color.parseColor("#7A8089"))
             option.setTypeface(null, Typeface.NORMAL)
-            option.background = ContextCompat.getDrawable(this, R.drawable.default_option_border_bg)
+            option.background = ContextCompat.getDrawable(this, R.drawable.style_default_option_border_bg)
         }
     }
 
@@ -154,11 +153,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 } else {
                     val question = mQuestionsList?.get(mCurrentPosition - 1)
                     if (question!!.correctAnswer != mSelectedOptionPosition) {
-                        answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
+                        answerView(mSelectedOptionPosition, R.drawable.style_wrong_option_border_bg)
                     } else {
                         mCorrectAnswers++
                     }
-                    answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
+                    answerView(question.correctAnswer, R.drawable.style_correct_option_border_bg)
                     if (mCurrentPosition == mQuestionsList!!.size) {
                         btnSubmit.text = "FINISH"
                     } else {
@@ -195,6 +194,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         mSelectedOptionPosition = selectedOptionNum
         tv.setTextColor(Color.parseColor("#363A43"))
         tv.setTypeface(tv.typeface, Typeface.BOLD)
-        tv.background = ContextCompat.getDrawable(this, R.drawable.selected_option_border_bg)
+        tv.background = ContextCompat.getDrawable(this, R.drawable.style_selected_option_border_bg)
     }
 }
