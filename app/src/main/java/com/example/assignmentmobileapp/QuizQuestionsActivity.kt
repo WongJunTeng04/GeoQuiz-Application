@@ -163,8 +163,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.hint -> {
-                hintCard.visibility =
-                    if (hintCard.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                hintCard.visibility = if (hintCard.visibility == View.VISIBLE) View.GONE else View.VISIBLE
             }
 
             R.id.tv_option_one -> {
@@ -192,20 +191,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     // Show a Toast indicating that the user must select an option
                     Toast.makeText(this, "Please select an option", Toast.LENGTH_SHORT).show()
                 } else {
-                    // User has selected an option
-                    val question = mQuestionsList?.get(mCurrentPosition - 1)
-
                     // Store user's answer
                     userAnswers[mCurrentPosition - 1] = mSelectedOptionPosition
 
-                    // Update button text based on current position
-                    if (mCurrentPosition == mQuestionsList!!.size) {
-                        btnSubmit.text = "FINISH"
-                    } else {
-                        btnSubmit.text = "NEXT"
-                    }
-
                     // Update correct answers count
+                    val question = mQuestionsList?.get(mCurrentPosition - 1)
                     if (question?.correctAnswer == mSelectedOptionPosition) {
                         mCorrectAnswers++
                     }
@@ -214,20 +204,26 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     mSelectedOptionPosition = 0
 
                     // Move to the next question or finish the quiz
-                    mCurrentPosition++
-                    if (mCurrentPosition <= mQuestionsList!!.size) {
+                    if (mCurrentPosition < mQuestionsList!!.size) {
+                        mCurrentPosition++
                         setQuestion()
                     } else {
-                        val intent = Intent(this, ResultActivity::class.java)
-                        intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
-                        intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
-                        startActivity(intent)
-                        finish()
+                        // Check if all questions have been answered
+                        if (userAnswers.contains(0)) {
+                            Toast.makeText(this, "Please answer all questions", Toast.LENGTH_SHORT).show()
+                        } else {
+                            val intent = Intent(this, ResultActivity::class.java)
+                            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+                            intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 }
             }
         }
     }
+
 
     private fun answerView(answer: Int, drawableView: Int) {
         when (answer) {
