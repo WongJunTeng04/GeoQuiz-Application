@@ -4,6 +4,7 @@ object Constants {
 
     const val TOTAL_QUESTIONS: String = "total_question"
     const val CORRECT_ANSWERS: String = "correct_answers"
+    const val CHEATS_USED : String = "cheats_used"
 
     fun getQuestions(): ArrayList<Question> {
         val questionsList = ArrayList<Question>()
@@ -127,7 +128,7 @@ object Constants {
 
         val question10 = Question(
             10,
-            "What country is this flag from?",
+            "Which country does this this flag belong to?",
             "One of the world's largest exporters of natural gas",
             R.drawable.iv_denmark_flag,
             "Japan",

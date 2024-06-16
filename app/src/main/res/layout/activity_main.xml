@@ -1,4 +1,4 @@
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,61 +8,80 @@
     android:background="@color/purple_700"
     tools:context=".MainActivity">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_geoquiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/poppins_black_italic"
             android:gravity="center"
-            android:padding="5dp">
+            android:text="GeoQuiz"
+            android:textColor="@color/white"
+            android:textSize="80sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:fontFamily="@font/poppins_black_italic"
-                    android:gravity="center"
-                    android:text="GeoQuiz"
-                    android:textColor="@color/white"
-                    android:textSize="80sp" />
+        <TextView
+            android:id="@+id/tv_knowledge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_black_italic"
+            android:gravity="center"
+            android:text="Unearth Knowledge, One Quiz at a Time"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_geoquiz"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_black_italic"
-                    android:gravity="center"
-                    android:text="Unearth Knowledge, One Quiz at a Time"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/iv_geoquizlogo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Logo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/iv_geoquizlogo"
+            app:layout_constraintTop_toBottomOf="@id/tv_knowledge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.6"
+            app:layout_constraintDimensionRatio="1:1" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="5dp"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="Logo"
-                    android:padding="5dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/iv_geoquizlogo" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_geoquizlogo">
 
                 <Button
                     android:id="@+id/startButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:padding="10dp"
                     android:background="@color/teal_700"
                     android:fontFamily="@font/poppins_bold"
+                    android:padding="10dp"
                     android:text="START"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <Button
+                    android:id="@+id/historyButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:padding="10dp"
                     android:background="@color/teal_700"
                     android:fontFamily="@font/poppins_bold"
+                    android:padding="10dp"
                     android:text="HISTORY"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
@@ -72,12 +91,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:padding="10dp"
                     android:background="@color/teal_700"
                     android:fontFamily="@font/poppins_bold"
+                    android:padding="10dp"
                     android:text="EXIT"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
-
         </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

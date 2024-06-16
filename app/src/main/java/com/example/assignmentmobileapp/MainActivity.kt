@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         leaveButton.setOnClickListener {
             Toast.makeText(this, "Thank you for your time", Toast.LENGTH_SHORT).show()
-            finish()
+            finishAffinity()
         }
 
     }

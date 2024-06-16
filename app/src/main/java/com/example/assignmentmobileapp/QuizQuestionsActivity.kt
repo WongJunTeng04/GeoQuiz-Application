@@ -1,6 +1,5 @@
 package com.example.assignmentmobileapp
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -10,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -20,8 +20,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mQuestionsList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
-    private var mIsCheater: Boolean = false
-    private var cheatTokens: Int = 3
+    private var mIsCheater: Boolean = false //Need to show in results
+    private var cheatTokens: Int = 3 //Need to show in results
+    private var userAnswers: ArrayList<Int> = ArrayList() // Store user answers
 
     private lateinit var btnPrevious: Button
     private lateinit var btnNext: Button
@@ -35,10 +36,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var btnSubmit: Button
     private lateinit var btnCheat: Button
     private lateinit var tvCheatTokens: TextView
-
-    companion object {
-        private const val REQUEST_CODE_CHEAT = 0
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +63,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         btnSubmit = findViewById(R.id.btn_submit)
 
         mQuestionsList = Constants.getQuestions()
+        for (i in mQuestionsList!!.indices) {
+            userAnswers.add(0) // Initialize with 0 indicating no answer selected
+        }
         setQuestion()
 
         // Set click listeners
@@ -103,21 +103,25 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         progressBar.progress = mCurrentPosition
         tvProgress.text = "$mCurrentPosition/${progressBar.max}"
 
-        question?.let {
+        question.let {
             tvQuestion.text = it.question
             ivFlag.setImageResource(it.image)
             tvOptionOne.text = it.option1
             tvOptionTwo.text = it.option2
             tvOptionThree.text = it.option3
             tvOptionFour.text = it.option4
+            tvHint.text = it.hint
         }
 
-        if (mCurrentPosition == mQuestionsList!!.size) {
-            btnSubmit.text = "FINISH"
-        } else {
-            btnSubmit.text = "SUBMIT"
+        // Restore selected answer if any
+        if (userAnswers[mCurrentPosition - 1] != 0) {
+            when (userAnswers[mCurrentPosition - 1]) {
+                1 -> selectedOptionView(tvOptionOne, 1)
+                2 -> selectedOptionView(tvOptionTwo, 2)
+                3 -> selectedOptionView(tvOptionThree, 3)
+                4 -> selectedOptionView(tvOptionFour, 4)
+            }
         }
-        defaultOptionsView() // Call to reset options view
     }
 
     private fun defaultOptionsView() {
@@ -144,26 +148,23 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             R.id.btn_next -> {
-                mCurrentPosition++
-                setQuestion()
+                if (mCurrentPosition < mQuestionsList!!.size) {
+                    mCurrentPosition++
+                    setQuestion()
+                }
             }
 
             R.id.btn_cheat -> {
                 if (cheatTokens > 0) {
                     cheatTokens--
                     updateCheatTokens()
-                    selectCorrectAnswer()
+                    highlightCorrectAnswer()
                 }
             }
 
             R.id.hint -> {
-                hintCard.visibility = View.VISIBLE
-                val question = mQuestionsList!![mCurrentPosition - 1]
-                tvHint.text = question.hint
-            }
-
-            R.id.hint_card -> {
-                hintCard.visibility = View.GONE
+                hintCard.visibility =
+                    if (hintCard.visibility == View.VISIBLE) View.GONE else View.VISIBLE
             }
 
             R.id.tv_option_one -> {
@@ -182,36 +183,47 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 selectedOptionView(tvOptionFour, 4)
             }
 
+            R.id.hint_card -> {
+                hintCard.visibility = View.GONE
+            }
+
             R.id.btn_submit -> {
                 if (mSelectedOptionPosition == 0) {
-                    mCurrentPosition++
-                    when {
-                        mCurrentPosition <= mQuestionsList!!.size -> {
-                            setQuestion()
-                        }
-
-                        else -> {
-                            val intent = Intent(this, ResultActivity::class.java)
-                            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
-                            intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
-                            startActivity(intent)
-                            finish()
-                        }
-                    }
+                    // Show a Toast indicating that the user must select an option
+                    Toast.makeText(this, "Please select an option", Toast.LENGTH_SHORT).show()
                 } else {
+                    // User has selected an option
                     val question = mQuestionsList?.get(mCurrentPosition - 1)
-                    if (question!!.correctAnswer != mSelectedOptionPosition) {
-                        answerView(mSelectedOptionPosition, R.drawable.style_wrong_option_border_bg)
-                    } else {
-                        mCorrectAnswers++
-                    }
-                    answerView(question.correctAnswer, R.drawable.style_correct_option_border_bg)
+
+                    // Store user's answer
+                    userAnswers[mCurrentPosition - 1] = mSelectedOptionPosition
+
+                    // Update button text based on current position
                     if (mCurrentPosition == mQuestionsList!!.size) {
                         btnSubmit.text = "FINISH"
                     } else {
                         btnSubmit.text = "NEXT"
                     }
+
+                    // Update correct answers count
+                    if (question?.correctAnswer == mSelectedOptionPosition) {
+                        mCorrectAnswers++
+                    }
+
+                    // Reset selected option position
                     mSelectedOptionPosition = 0
+
+                    // Move to the next question or finish the quiz
+                    mCurrentPosition++
+                    if (mCurrentPosition <= mQuestionsList!!.size) {
+                        setQuestion()
+                    } else {
+                        val intent = Intent(this, ResultActivity::class.java)
+                        intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+                        intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
             }
         }
@@ -245,28 +257,15 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv.background = ContextCompat.getDrawable(this, R.drawable.style_selected_option_border_bg)
     }
 
+    private fun highlightCorrectAnswer() {
+        val question = mQuestionsList!![mCurrentPosition - 1]
+        answerView(question.correctAnswer, R.drawable.style_selected_option_border_bg)
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean("mIsCheater", mIsCheater)
         outState.putInt("cheatTokens", cheatTokens)
-    }
-
-    private fun selectCorrectAnswer() {
-        val question = mQuestionsList!![mCurrentPosition - 1]
-        when (question.correctAnswer) {
-            1 -> {
-                selectedOptionView(tvOptionOne, 1)
-            }
-            2 -> {
-                selectedOptionView(tvOptionTwo, 2)
-            }
-            3 -> {
-                selectedOptionView(tvOptionThree, 3)
-            }
-            4 -> {
-                selectedOptionView(tvOptionFour, 4)
-            }
-        }
     }
 
     private fun updateCheatTokens() {
