@@ -285,6 +285,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         answerView(question.correctAnswer, R.drawable.style_selected_option_border_bg)
     }
 
+    //Track whether the user has used any cheats during the test.
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putBoolean("mIsCheater", mIsCheater)
