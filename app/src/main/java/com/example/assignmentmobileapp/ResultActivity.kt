@@ -1,5 +1,6 @@
 package com.example.assignmentmobileapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -23,17 +24,22 @@ class ResultActivity : AppCompatActivity() {
 
         val tvScore: TextView = findViewById(R.id.tv_score)
         val btnFinish: Button = findViewById(R.id.btn_finish)
+        val btnHistory: Button = findViewById(R.id.btn_history)
 
-        val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
-        val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
+        val sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+        val totalQuestions = sharedPreferences.getInt(Constants.TOTAL_QUESTIONS, 0)
+        val correctAnswers = sharedPreferences.getInt(Constants.CORRECT_ANSWERS, 0)
 
         tvScore.text = "Your score is $correctAnswers out of $totalQuestions"
         val percentageScore = (correctAnswers.toDouble() / totalQuestions.toDouble()) * 100
         Toast.makeText(this, "You scored %.2f%%".format(percentageScore), Toast.LENGTH_LONG).show()
 
+        btnHistory.setOnClickListener {
+            startActivity(Intent(this, HistoryActivity::class.java))
+        }
+
         btnFinish.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
-
 }

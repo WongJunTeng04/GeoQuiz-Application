@@ -13,11 +13,17 @@ class MainActivity : AppCompatActivity() {
 
         val startButton: Button = findViewById(R.id.startButton)
         val leaveButton : Button = findViewById(R.id.leaveButton)
+        val historyButton : Button = findViewById(R.id.historyButton)
 
         startButton.setOnClickListener {
             val intent = Intent(this, QuizQuestionsActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        historyButton.setOnClickListener {
+            val intent = Intent(this, HistoryActivity::class.java)
+            startActivity(intent)
         }
 
         leaveButton.setOnClickListener {

@@ -1,5 +1,6 @@
 package com.example.assignmentmobileapp
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -20,8 +21,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mQuestionsList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
-    private var mIsCheater: Boolean = false //Need to show in results
-    private var cheatTokens: Int = 3 //Need to show in results
+    private var mIsCheater: Boolean = false // Need to show in results
+    private var cheatTokens: Int = 3 // Need to show in results
+    private var initialCheatTokens: Int = cheatTokens // Track initial cheat tokens
     private var userAnswers: ArrayList<Int> = ArrayList() // Store user answers
     private var gradedQuestions: HashSet<Int> = HashSet() // Keep track of graded questions
 
@@ -48,6 +50,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         if (savedInstanceState != null) {
             mIsCheater = savedInstanceState.getBoolean("mIsCheater")
             cheatTokens = savedInstanceState.getInt("cheatTokens")
+            initialCheatTokens = savedInstanceState.getInt("initialCheatTokens")
         }
 
         // Initialize views
@@ -80,8 +83,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tvOptionThree.setOnClickListener(this)
         tvOptionFour.setOnClickListener(this)
         btnSubmit.setOnClickListener(this)
-
-
     }
 
     private fun setQuestion() {
@@ -222,9 +223,16 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         if (userAnswers.contains(0)) {
                             Toast.makeText(this, "Please answer all questions", Toast.LENGTH_SHORT).show()
                         } else {
+                            // Save results to SharedPreferences
+                            val sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+                            val editor = sharedPreferences.edit()
+                            editor.putInt(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+                            editor.putInt(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
+                            editor.putInt(Constants.CHEATS_USED, initialCheatTokens - cheatTokens)
+                            editor.apply()
+
+                            // Start ResultActivity
                             val intent = Intent(this, ResultActivity::class.java)
-                            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
-                            intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList!!.size)
                             startActivity(intent)
                             finish()
                         }
@@ -281,6 +289,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         super.onSaveInstanceState(outState)
         outState.putBoolean("mIsCheater", mIsCheater)
         outState.putInt("cheatTokens", cheatTokens)
+        outState.putInt("initialCheatTokens", initialCheatTokens)
     }
 
     private fun updateCheatTokens() {
@@ -290,3 +299,4 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 }
+

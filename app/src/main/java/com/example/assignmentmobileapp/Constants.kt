@@ -2,6 +2,7 @@ package com.example.assignmentmobileapp
 
 object Constants {
 
+    const val PREF_NAME = "quizAppPrefs"
     const val TOTAL_QUESTIONS: String = "total_question"
     const val CORRECT_ANSWERS: String = "correct_answers"
     const val CHEATS_USED : String = "cheats_used"
