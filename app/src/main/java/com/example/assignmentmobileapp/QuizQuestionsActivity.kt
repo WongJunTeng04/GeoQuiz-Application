@@ -23,6 +23,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mIsCheater: Boolean = false //Need to show in results
     private var cheatTokens: Int = 3 //Need to show in results
     private var userAnswers: ArrayList<Int> = ArrayList() // Store user answers
+    private var gradedQuestions: HashSet<Int> = HashSet() // Keep track of graded questions
 
     private lateinit var btnPrevious: Button
     private lateinit var btnNext: Button
@@ -79,6 +80,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tvOptionThree.setOnClickListener(this)
         tvOptionFour.setOnClickListener(this)
         btnSubmit.setOnClickListener(this)
+
+
     }
 
     private fun setQuestion() {
@@ -88,9 +91,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         btnPrevious.visibility = if (mCurrentPosition > 1) View.VISIBLE else View.GONE
 
         if (mCurrentPosition == mQuestionsList!!.size) {
-            btnSubmit.text = "FINISH"
+            btnSubmit.text = getString(R.string.finish_text_QQA)
         } else {
-            btnSubmit.text = "SUBMIT"
+            btnSubmit.text = getString(R.string.submit_text_QQA)
         }
 
         // Find other views by ID
@@ -116,10 +119,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         // Restore selected answer if any
         if (userAnswers[mCurrentPosition - 1] != 0) {
             when (userAnswers[mCurrentPosition - 1]) {
-                1 -> selectedOptionView(tvOptionOne, 1)
-                2 -> selectedOptionView(tvOptionTwo, 2)
-                3 -> selectedOptionView(tvOptionThree, 3)
-                4 -> selectedOptionView(tvOptionFour, 4)
+                1 -> selectedOptionView(tvOptionOne, 1, false)
+                2 -> selectedOptionView(tvOptionTwo, 2, false)
+                3 -> selectedOptionView(tvOptionThree, 3, false)
+                4 -> selectedOptionView(tvOptionFour, 4, false)
             }
         }
     }
@@ -137,6 +140,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             option.setTypeface(null, Typeface.NORMAL)
             option.background =
                 ContextCompat.getDrawable(this, R.drawable.style_default_option_border_bg)
+            option.isClickable = true // Make options clickable by default
         }
     }
 
@@ -194,11 +198,17 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     // Store user's answer
                     userAnswers[mCurrentPosition - 1] = mSelectedOptionPosition
 
-                    // Update correct answers count
-                    val question = mQuestionsList?.get(mCurrentPosition - 1)
-                    if (question?.correctAnswer == mSelectedOptionPosition) {
-                        mCorrectAnswers++
+                    // Update correct answers count if not already graded
+                    if (!gradedQuestions.contains(mCurrentPosition - 1)) {
+                        val question = mQuestionsList?.get(mCurrentPosition - 1)
+                        if (question?.correctAnswer == mSelectedOptionPosition) {
+                            mCorrectAnswers++
+                        }
+                        gradedQuestions.add(mCurrentPosition - 1)
                     }
+
+                    // Disable option buttons
+                    disableOptions()
 
                     // Reset selected option position
                     mSelectedOptionPosition = 0
@@ -224,7 +234,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
     private fun answerView(answer: Int, drawableView: Int) {
         when (answer) {
             1 -> {
@@ -245,12 +254,22 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
+    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int, isEnabled: Boolean = true) {
         defaultOptionsView()
         mSelectedOptionPosition = selectedOptionNum
         tv.setTextColor(Color.parseColor("#363A43"))
         tv.setTypeface(tv.typeface, Typeface.BOLD)
         tv.background = ContextCompat.getDrawable(this, R.drawable.style_selected_option_border_bg)
+        if (!isEnabled) {
+            disableOptions()
+        }
+    }
+
+    private fun disableOptions() {
+        tvOptionOne.isClickable = false
+        tvOptionTwo.isClickable = false
+        tvOptionThree.isClickable = false
+        tvOptionFour.isClickable = false
     }
 
     private fun highlightCorrectAnswer() {

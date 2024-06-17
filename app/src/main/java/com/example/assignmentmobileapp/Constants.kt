@@ -16,7 +16,7 @@ object Constants {
             R.drawable.iv_denmark_flag,
             "Argentina",
             "Australia",
-            "Malaysia",
+            "Norway",
             "Denmark",
             4
         )
@@ -27,10 +27,10 @@ object Constants {
             "What is the name of the largest country in the world?",
             "The largest cat species is found here too: Siberian Tiger",
             R.drawable.iv_worldmap,
-            "Argentina",
+            "Pakistan",
             "Russia",
-            "Malaysia",
-            "Denmark",
+            "Mexico",
+            "Brazil",
             2
         )
         questionsList.add(question2)
@@ -41,9 +41,9 @@ object Constants {
             "Messi won the world cup in 2022 in this country.",
             R.drawable.iv_argentina_flag,
             "Argentina",
-            "Australia",
-            "Malaysia",
-            "Denmark",
+            "Cyprus",
+            "Brunei",
+            "Uruguay",
             1
         )
         questionsList.add(question3)
@@ -51,13 +51,13 @@ object Constants {
         val question4 = Question(
             4,
             "This country has the highest population in the world:",
-            "Country famous for the Great Wall",
-            R.drawable.iv_denmark_flag,
-            "Bahamas",
-            "Belgium",
-            "Barbados",
+            "Home to the Taj Mahal",
+            R.drawable.iv_india,
+            "Bangladesh",
+            "Nigeria",
+            "India",
             "China",
-            4
+            3
         )
         questionsList.add(question4)
 
@@ -65,12 +65,12 @@ object Constants {
             5,
             "Pho, is a traditional dish in which asian country?",
             "Also famous for their exotic street food consisting of insects.",
-            R.drawable.iv_denmark_flag,
+            R.drawable.iv_vietnam,
+            "Turkey",
             "Vietnam",
-            "China",
-            "Malaysia",
+            "El Salvador",
             "Thailand",
-            1
+            2
         )
         questionsList.add(question5)
 
@@ -78,7 +78,7 @@ object Constants {
             6,
             "Which country has the largest Muslim population in the world? ",
             "Home to the world's largest flower: Rafflesia Arnoldii",
-            R.drawable.iv_denmark_flag,
+            R.drawable.iv_indonesia,
             "Iraq",
             "Indonesia",
             "Kuwait",
@@ -91,11 +91,11 @@ object Constants {
             7,
             "Which country does this flag belong to?",
             "Nestled between Iraq and Saudi Arabia",
-            R.drawable.iv_denmark_flag,
+            R.drawable.iv_kuwait_flag,
             "Malaysia",
-            "Indonesia",
+            "Croatia",
             "Kuwait",
-            "Lebanon",
+            "Samoa",
             3
         )
         questionsList.add(question7)
@@ -104,7 +104,7 @@ object Constants {
             8,
             "Which country is often called the Land of the Rising Sun?",
             "This country is famous for it's own spin on cartoons called Anime",
-            R.drawable.iv_denmark_flag,
+            R.drawable.iv_japan,
             "Japan",
             "China",
             "Malaysia",
@@ -117,7 +117,7 @@ object Constants {
             9,
             "Which country does this flag belong to?",
             "Home to the Pyramids of Giza",
-            R.drawable.iv_denmark_flag,
+            R.drawable.iv_egypt_flag,
             "Egypt",
             "Singapore",
             "Germany",
@@ -128,14 +128,14 @@ object Constants {
 
         val question10 = Question(
             10,
-            "Which country does this this flag belong to?",
-            "One of the world's largest exporters of natural gas",
-            R.drawable.iv_denmark_flag,
-            "Japan",
-            "China",
+            "Which country does this flag belong to?",
+            "The capital of this country is Athens",
+            R.drawable.iv_greece_flag,
+            "Guinea",
+            "Rwanda",
             "Qatar",
-            "Thailand",
-            3
+            "Greece",
+            4
         )
         questionsList.add(question10)
 

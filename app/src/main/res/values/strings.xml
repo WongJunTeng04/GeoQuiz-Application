@@ -5,4 +5,6 @@
     <string name="title_activity_cheat">CheatActivity</string>
     <string name="cheat_activity_label">Cheat</string>
     <string name="title_activity_history">HistoryActivity</string>
+    <string name="finish_text_QQA">FINISH</string>
+    <string name="submit_text_QQA">SUBMIT</string>
 </resources>
