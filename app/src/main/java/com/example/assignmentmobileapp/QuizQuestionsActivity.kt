@@ -284,6 +284,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         builder.setPositiveButton("Yes") { _, _ ->
             // Reset quiz
+            mQuestionsList?.shuffle()
             mCurrentPosition = 1
             mSelectedOptionPosition = 0
             mCorrectAnswers = 0
