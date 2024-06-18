@@ -19,13 +19,13 @@ import androidx.core.content.ContextCompat
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private var mCurrentPosition: Int = 1
-    private var mQuestionsList: ArrayList<Question>? = null
+    private var mQuestionsList: ArrayList<Question>? = ArrayList() //CHANGED HERE.
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
-    private var mIsCheater: Boolean = false // Need to show in results
+    private var mIsCheater: Boolean = false
     private var cheatTokens: Int = 3 // Need to show in results
     private var initialCheatTokens: Int = cheatTokens // Track initial cheat tokens
-    private val userAnswers = ArrayList<Int>() // Store user answers
+    private lateinit var userAnswers: IntArray // Store user answers
     private val gradedQuestions = HashSet<Int>() // Keep track of graded questions
     private val cheatedQuestions = HashSet<Int>() // Keep track of cheated questions
 
@@ -54,8 +54,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             mCurrentPosition = savedInstanceState.getInt("mCurrentPosition")
             mSelectedOptionPosition = savedInstanceState.getInt("mSelectedOptionPosition")
             mCorrectAnswers = savedInstanceState.getInt("mCorrectAnswers")
-            userAnswers.clear()
-            userAnswers.addAll(savedInstanceState.getIntegerArrayList("userAnswers")!!)
+            userAnswers = savedInstanceState.getIntArray("userAnswers") ?: IntArray(mQuestionsList!!.size) { 0 }
             gradedQuestions.clear()
             gradedQuestions.addAll(savedInstanceState.getIntegerArrayList("gradedQuestions")!!.toSet())
             cheatedQuestions.clear()
@@ -64,18 +63,17 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         initializeViews()
         mQuestionsList = Constants.getQuestions()
-        if (userAnswers.size != mQuestionsList!!.size) {
-            userAnswers.addAll(List(mQuestionsList!!.size) { 0 })
+        if (!::userAnswers.isInitialized) {
+            userAnswers = IntArray(mQuestionsList!!.size) { 0 }
         }
         setQuestion()
         setClickListeners()
     }
 
     private fun initializeViews() {
-        tvCheatTokens = findViewById(R.id.tv_cheat_tokens)
+
         btnPrevious = findViewById(R.id.btn_previous)
         btnNext = findViewById(R.id.btn_next)
-        btnCheat = findViewById(R.id.btn_cheat)
         btnHint = findViewById(R.id.hint)
         hintCard = findViewById(R.id.hint_card)
         tvHint = findViewById(R.id.tv_hint)
@@ -84,20 +82,22 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tvOptionThree = findViewById(R.id.tv_option_three)
         tvOptionFour = findViewById(R.id.tv_option_four)
         btnSubmit = findViewById(R.id.btn_submit)
+        btnCheat = findViewById(R.id.btn_cheat)
+        tvCheatTokens = findViewById(R.id.tv_cheat_tokens)
         btnReset = findViewById(R.id.btn_reset) // Initialize reset button
         updateCheatTokens()
     }
 
     private fun setClickListeners() {
         val options = listOf(tvOptionOne, tvOptionTwo, tvOptionThree, tvOptionFour)
+        options.forEach { it.setOnClickListener(this) }
         btnPrevious.setOnClickListener(this)
         btnNext.setOnClickListener(this)
         btnCheat.setOnClickListener(this)
         btnHint.setOnClickListener(this)
         hintCard.setOnClickListener(this)
         btnSubmit.setOnClickListener(this)
-        btnReset.setOnClickListener(this) // Set click listener for reset button
-        options.forEach { it.setOnClickListener(this) }
+        btnReset.setOnClickListener(this)
     }
 
     private fun setQuestion() {
@@ -110,12 +110,13 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         btnReset.visibility = if (mCurrentPosition > 1) View.VISIBLE else View.GONE
         btnSubmit.text = if (mCurrentPosition == mQuestionsList!!.size) getString(R.string.finish_text_QQA) else getString(R.string.submit_text_QQA)
 
-
+        //Initialise other views
         val progressBar: ProgressBar = findViewById(R.id.progress_bar)
         val tvProgress: TextView = findViewById(R.id.tv_progress)
         val tvQuestion: TextView = findViewById(R.id.tv_question)
         val ivFlag: ImageView = findViewById(R.id.iv_flag)
 
+        //Progress Bar
         progressBar.progress = mCurrentPosition
         tvProgress.text = "$mCurrentPosition/${progressBar.max}"
 
@@ -129,6 +130,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             tvHint.text = it.hint
         }
 
+        //Lock options when users have submitted an answer for a question
         userAnswers[mCurrentPosition - 1].takeIf { it != 0 }?.let {
             when (it) {
                 1 -> selectedOptionView(tvOptionOne, 1, false)
@@ -176,6 +178,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             R.id.hint -> {
                 hintCard.visibility = if (hintCard.visibility == View.VISIBLE) View.GONE else View.VISIBLE
             }
+
+            //Others
             R.id.tv_option_one -> selectedOptionView(tvOptionOne, 1)
             R.id.tv_option_two -> selectedOptionView(tvOptionTwo, 2)
             R.id.tv_option_three -> selectedOptionView(tvOptionThree, 3)
@@ -214,6 +218,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun saveResultsAndFinish() {
+        // Save results to SharedPreferences or any other storage mechanism
         val sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
         with(sharedPreferences.edit()) {
             putInt(Constants.CORRECT_ANSWERS, mCorrectAnswers)
@@ -221,10 +226,16 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             putInt(Constants.CHEATS_USED, initialCheatTokens - cheatTokens)
             apply()
         }
-        val intent = Intent(this, ResultActivity::class.java)
-        startActivity(intent)
+        // Intent for ResultActivity
+        val resultIntent = Intent(this, ResultActivity::class.java)
+        startActivity(resultIntent)
+
+        // Pass both mQuestionsList and userAnswers to ReviewActivity using singleton method
+        ReviewActivity.receiveData(mQuestionsList, userAnswers)
+        // Finish current activity if needed
         finish()
     }
+
 
     private fun answerView(answer: Int, drawableView: Int) {
         when (answer) {
@@ -255,7 +266,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun highlightCorrectAnswer() {
         val question = mQuestionsList!![mCurrentPosition - 1]
-        answerView(question.correctAnswer, R.drawable.style_selected_option_border_bg)
+        answerView(question.correctAnswer, R.drawable.style_correct_option_border_bg)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -266,7 +277,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         outState.putInt("mCurrentPosition", mCurrentPosition)
         outState.putInt("mSelectedOptionPosition", mSelectedOptionPosition)
         outState.putInt("mCorrectAnswers", mCorrectAnswers)
-        outState.putIntegerArrayList("userAnswers", userAnswers)
+        outState.putIntArray("userAnswers", userAnswers)
         outState.putIntegerArrayList("gradedQuestions", ArrayList(gradedQuestions))
         outState.putIntegerArrayList("cheatedQuestions", ArrayList(cheatedQuestions))
     }

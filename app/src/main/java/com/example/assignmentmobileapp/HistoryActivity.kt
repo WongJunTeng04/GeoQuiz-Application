@@ -18,6 +18,7 @@ class HistoryActivity : AppCompatActivity() {
         val tvTotalQuestionsAnswered: TextView = findViewById(R.id.tv_totalQuestionAnswered)
         val tvTotalScore: TextView = findViewById(R.id.tv_totalScore)
         val tvCheatAttempts: TextView = findViewById(R.id.tv_totalCheatsUsed)
+        val reviewButton: Button = findViewById(R.id.btn_review)
 
         val sharedPreferences = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
         val totalQuestions = sharedPreferences.getInt(Constants.TOTAL_QUESTIONS, 0)
@@ -28,6 +29,12 @@ class HistoryActivity : AppCompatActivity() {
         tvTotalQuestionsAnswered.text= "$totalQuestions questions"
         tvTotalScore.text = "$correctAnswers out of $totalQuestions"
         tvCheatAttempts.text = "Used $cheatAttempts cheat(s)"
+
+
+        reviewButton.setOnClickListener{
+            val intent = Intent(this, ReviewActivity::class.java)
+            startActivity(intent)
+        }
 
         exitButton.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)

@@ -18,7 +18,7 @@
             android:id="@+id/tv_summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="SUMMARY"
             android:textColor="@color/white"
             android:textSize="50sp"
@@ -63,7 +63,7 @@
                     android:id="@+id/tv_totalQuestions1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@android:color/black"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -86,7 +86,7 @@
                     android:id="@+id/tv_totalQuestionAnswered"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@android:color/black"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -130,7 +130,7 @@
                     android:id="@+id/tv_totalScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@android:color/black"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -174,7 +174,7 @@
                     android:id="@+id/tv_totalCheatsUsed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:textColor="@android:color/black"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -183,6 +183,23 @@
                     android:layout_gravity="center_horizontal" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btn_review"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="REVIEW"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_bold"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/card3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintBottom_toTopOf="@id/btn_finish" />
 
         <Button
             android:id="@+id/btn_finish"
@@ -195,7 +212,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/poppins_bold"
             android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/card3"
+            app:layout_constraintTop_toBottomOf="@id/btn_review"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.8"
