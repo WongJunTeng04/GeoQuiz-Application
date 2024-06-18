@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class ResultActivity : AppCompatActivity() {
 
-    private lateinit var btnReset : Button
+    private lateinit var btnReset: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,8 +19,10 @@ class ResultActivity : AppCompatActivity() {
 
         btnReset = findViewById(R.id.btn_reset)
         btnReset.setOnClickListener {
-            val intent = Intent(this, QuizQuestionsActivity::class.java)
-            startActivity(intent)
+            showLeaveConfirmationDialog(
+                Intent(this, QuizQuestionsActivity::class.java),
+                "Are you sure you want to restart the quiz?"
+            )
         }
 
         val tvScore: TextView = findViewById(R.id.tv_score)
@@ -35,11 +38,34 @@ class ResultActivity : AppCompatActivity() {
         Toast.makeText(this, "You scored %.2f%%".format(percentageScore), Toast.LENGTH_LONG).show()
 
         btnHistory.setOnClickListener {
-            startActivity(Intent(this, HistoryActivity::class.java))
+            showLeaveConfirmationDialog(
+                Intent(this, HistoryActivity::class.java),
+                "Are you sure you want to view your quiz history?"
+            )
         }
 
         btnFinish.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            showLeaveConfirmationDialog(
+                Intent(this, MainActivity::class.java),
+                "Are you sure you want to go back to the main menu?"
+            )
         }
+    }
+
+    private fun showLeaveConfirmationDialog(intent: Intent, message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirm Navigation")
+        builder.setMessage(message)
+
+        builder.setPositiveButton("Yes") { _, _ ->
+            startActivity(intent)
+        }
+
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 }

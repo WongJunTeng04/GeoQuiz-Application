@@ -14,7 +14,6 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
 
         val exitButton: Button = findViewById(R.id.btn_finish)
-
         val tvTotalQuetions1: TextView = findViewById(R.id.tv_totalQuestions1)
         val tvTotalQuestionsAnswered: TextView = findViewById(R.id.tv_totalQuestionAnswered)
         val tvTotalScore: TextView = findViewById(R.id.tv_totalScore)

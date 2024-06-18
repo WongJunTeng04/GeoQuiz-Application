@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/btn_previous"
             android:layout_width="36dp"
@@ -31,12 +32,24 @@
             android:layout_marginEnd="24dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/iv_right_arrow"
-            android:contentDescription="none"
             android:maxWidth="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="1.0" />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="36dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/icon_reset"
+            android:contentDescription="none"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_previous"
+            app:layout_constraintEnd_toStartOf="@+id/btn_next"
+            app:layout_constraintHorizontal_bias="0.5" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -45,6 +58,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="10dp"
+            android:layout_marginTop="60dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +78,7 @@
                 android:id="@+id/iv_flag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:adjustViewBounds="true"
                 android:maxHeight="150dp"
                 android:padding="5dp"
@@ -105,14 +119,15 @@
                 android:id="@+id/hint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:background="@drawable/style_edittext_black_border"
                 android:fontFamily="@font/poppins_bold"
                 android:gravity="center"
-                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
                 android:text="Hint"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
@@ -133,7 +148,7 @@
                     android:fontFamily="@font/poppins"
                     android:text="This is a hint."
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="20sp" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -144,7 +159,7 @@
                 android:background="@drawable/style_default_option_border_bg"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:padding="7dp"
+                android:padding="10dp"
                 android:text="VALUE"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -157,7 +172,7 @@
                 android:background="@drawable/style_default_option_border_bg"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:padding="7dp"
+                android:padding="10dp"
                 android:text="VALUE"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -170,7 +185,7 @@
                 android:background="@drawable/style_default_option_border_bg"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:padding="7dp"
+                android:padding="10dp"
                 android:text="VALUE"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -183,7 +198,7 @@
                 android:background="@drawable/style_default_option_border_bg"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:padding="7dp"
+                android:padding="10dp"
                 android:text="VALUE"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -192,19 +207,23 @@
                 android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/teal_700"
                 android:fontFamily="@font/poppins_bold"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="SUBMIT"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btn_cheat"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:text="Cheat"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="10dp"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -217,7 +236,7 @@
                 android:fontFamily="@font/poppins"
                 android:text="Cheat Tokens: 3"
                 android:textColor="@color/black"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_cheat" />
