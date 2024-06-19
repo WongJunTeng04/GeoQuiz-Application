@@ -14,7 +14,7 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
 
         val exitButton: Button = findViewById(R.id.btn_finish)
-        val tvTotalQuetions1: TextView = findViewById(R.id.tv_totalQuestions1)
+        val tvTotalQuestions1: TextView = findViewById(R.id.tv_totalQuestions1)
         val tvTotalQuestionsAnswered: TextView = findViewById(R.id.tv_totalQuestionAnswered)
         val tvTotalScore: TextView = findViewById(R.id.tv_totalScore)
         val tvCheatAttempts: TextView = findViewById(R.id.tv_totalCheatsUsed)
@@ -25,7 +25,7 @@ class HistoryActivity : AppCompatActivity() {
         val correctAnswers = sharedPreferences.getInt(Constants.CORRECT_ANSWERS, 0)
         val cheatAttempts = sharedPreferences.getInt(Constants.CHEATS_USED, 0)
 
-        tvTotalQuetions1.text = "$totalQuestions"
+        tvTotalQuestions1.text = "$totalQuestions"
         tvTotalQuestionsAnswered.text= "$totalQuestions questions"
         tvTotalScore.text = "$correctAnswers out of $totalQuestions"
         tvCheatAttempts.text = "Used $cheatAttempts cheat(s)"

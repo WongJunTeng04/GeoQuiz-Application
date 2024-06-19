@@ -9,23 +9,20 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-
-private lateinit var ivPrevious: Button
-private lateinit var ivNext: Button
-private lateinit var exitButton: Button
-
 class ReviewActivity : AppCompatActivity() {
 
+    private lateinit var ivPrevious: Button
+    private lateinit var ivNext: Button
+    private lateinit var exitButton: Button
+
     companion object {
-        private var instance: ReviewActivity? = null
         private var questionsList: ArrayList<Question>? = null
         private var userAnswers: IntArray? = null
 
-        // Singleton method to receive and handle questions list and user answers
+        // Method to receive and handle questions list and user answers
         fun receiveData(questionsList: ArrayList<Question>?, userAnswers: IntArray?) {
             this.questionsList = questionsList
             this.userAnswers = userAnswers
-            instance?.displayCurrentQuestion()
         }
     }
 
@@ -35,18 +32,21 @@ class ReviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_review)
 
-        // Initialize instance in companion object
-        instance = this
-
-        // Handle the data if it's already available
-        displayCurrentQuestion()
-
         ivPrevious = findViewById(R.id.btn_previous)
         ivNext = findViewById(R.id.btn_next)
         exitButton = findViewById(R.id.btn_exit)
 
-        ivPrevious.visibility = View.VISIBLE
-        ivNext.visibility = View.VISIBLE
+        // Check if the quiz has been done
+        if (questionsList == null || userAnswers == null) {
+            Toast.makeText(this, "There is no review available. Please complete the quiz first.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
+        // Handle the data if it's already available
+        displayCurrentQuestion()
 
         ivPrevious.setOnClickListener {
             showPreviousQuestion()
@@ -56,40 +56,44 @@ class ReviewActivity : AppCompatActivity() {
             showNextQuestion()
         }
 
-        exitButton.setOnClickListener{
+        exitButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        updateNavigationButtons()
     }
 
     private fun displayCurrentQuestion() {
-        if (questionsList != null && userAnswers != null) {
-            val question = questionsList!![currentQuestionIndex]
-            val userAnswer = userAnswers!![currentQuestionIndex]
+        questionsList?.let { questions ->
+            userAnswers?.let { answers ->
+                val question = questions[currentQuestionIndex]
+                val userAnswer = answers[currentQuestionIndex]
 
-            val tvQuestion: TextView = findViewById(R.id.tv_question)
-            val ivFlag: ImageView = findViewById(R.id.iv_flag)
-            val tvOptionOne: TextView = findViewById(R.id.tv_option_one)
-            val tvOptionTwo: TextView = findViewById(R.id.tv_option_two)
-            val tvOptionThree: TextView = findViewById(R.id.tv_option_three)
-            val tvOptionFour: TextView = findViewById(R.id.tv_option_four)
+                val tvQuestion: TextView = findViewById(R.id.tv_question)
+                val ivFlag: ImageView = findViewById(R.id.iv_flag)
+                val tvOptionOne: TextView = findViewById(R.id.tv_option_one)
+                val tvOptionTwo: TextView = findViewById(R.id.tv_option_two)
+                val tvOptionThree: TextView = findViewById(R.id.tv_option_three)
+                val tvOptionFour: TextView = findViewById(R.id.tv_option_four)
 
-            tvQuestion.text = question.question
+                tvQuestion.text = question.question
 
-            if (question.image != 0) {
-                ivFlag.setImageResource(question.image)
-                ivFlag.visibility = View.VISIBLE
-            } else {
-                ivFlag.visibility = View.GONE
+                if (question.image != 0) {
+                    ivFlag.setImageResource(question.image)
+                    ivFlag.visibility = View.VISIBLE
+                } else {
+                    ivFlag.visibility = View.GONE
+                }
+
+                tvOptionOne.text = question.option1
+                tvOptionTwo.text = question.option2
+                tvOptionThree.text = question.option3
+                tvOptionFour.text = question.option4
+
+                // Highlight user answer and the correct answer
+                highlightAnswers(userAnswer, question.correctAnswer)
             }
-
-            tvOptionOne.text = question.option1
-            tvOptionTwo.text = question.option2
-            tvOptionThree.text = question.option3
-            tvOptionFour.text = question.option4
-
-            // Highlight user answer and the correct answer
-            highlightAnswers(userAnswer, question.correctAnswer)
         }
     }
 
@@ -137,22 +141,24 @@ class ReviewActivity : AppCompatActivity() {
         tvOptionFour.setBackgroundResource(R.drawable.style_text_black_border)
     }
 
-    // Call this method to move to the next question
     private fun showNextQuestion() {
         if (currentQuestionIndex < questionsList!!.size - 1) {
             currentQuestionIndex++
             displayCurrentQuestion()
-        } else {
-            Toast.makeText(this, "This is the end of the quiz.", Toast.LENGTH_SHORT).show()
         }
+        updateNavigationButtons()
     }
 
-    // Call this method to move to the previous question
     private fun showPreviousQuestion() {
         if (currentQuestionIndex > 0) {
             currentQuestionIndex--
             displayCurrentQuestion()
         }
+        updateNavigationButtons()
     }
 
+    private fun updateNavigationButtons() {
+        ivPrevious.visibility = if (currentQuestionIndex > 0) View.VISIBLE else View.GONE
+        ivNext.visibility = if (currentQuestionIndex < questionsList!!.size - 1) View.VISIBLE else View.GONE
+    }
 }
