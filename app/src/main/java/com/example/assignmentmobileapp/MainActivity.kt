@@ -37,12 +37,12 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle("Confirm Exit")
         builder.setMessage("Are you sure you want to leave?")
 
-        builder.setPositiveButton("Yes") { dialog, which ->
+        builder.setPositiveButton("Yes") { _, _ ->
             Toast.makeText(applicationContext, "Thank you for your time", Toast.LENGTH_SHORT).show()
             finishAffinity()
         }
 
-        builder.setNegativeButton("No") { dialog, which ->
+        builder.setNegativeButton("No") { dialog, _ ->
             dialog.dismiss()
         }
 

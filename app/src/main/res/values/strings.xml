@@ -8,4 +8,13 @@
     <string name="finish_text_QQA">FINISH</string>
     <string name="submit_text_QQA">SUBMIT</string>
     <string name="title_activity_review">ReviewActivity</string>
+    <string name="exit">EXIT</string>
+    <string name="history">History</string>
+    <string name="reset">RESET</string>
+    <string name="image">image</string>
+    <string name="congratulations">CONGRATULATIONS</string>
+    <string name="result">RESULT</string>
+    <string name="what_country_does_this_flag_belong_to">What country does this flag belong to?</string>
+    <string name="value">VALUE</string>
+    <string name="none">none</string>
 </resources>
