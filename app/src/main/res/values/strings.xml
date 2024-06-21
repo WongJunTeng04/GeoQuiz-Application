@@ -17,4 +17,21 @@
     <string name="what_country_does_this_flag_belong_to">What country does this flag belong to?</string>
     <string name="value">VALUE</string>
     <string name="none">none</string>
+    <string name="review">REVIEW</string>
+    <string name="total_cheats">Total Cheats:</string>
+    <string name="answered">Answered:</string>
+    <string name="total_score">Total Score:</string>
+    <string name="summary">SUMMARY</string>
+    <string name="total_questions">Total Questions:</string>
+    <string name="logo">Logo</string>
+    <string name="start">START</string>
+    <string name="geoquiz">GeoQuiz</string>
+    <string name="unearth_knowledge_one_quiz_at_a_time">Unearth Knowledge, One Quiz at a Time</string>
+    <string name="cheat">Cheat</string>
+    <string name="submit">SUBMIT</string>
+    <string name="hint">Hint</string>
+    <string name="cheat_tokens_3">Cheat Tokens: 3</string>
+    <string name="this_is_a_hint">This is a hint.</string>
+    <string name="todo">TODO</string>
+    <string name="_0_10">0/10</string>
 </resources>

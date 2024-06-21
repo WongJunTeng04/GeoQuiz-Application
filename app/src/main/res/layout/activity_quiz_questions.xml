@@ -19,7 +19,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/iv_left_arrow"
-            android:contentDescription="none"
+            android:contentDescription="@string/none"
             android:visibility="gone"
             android:maxWidth="10dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
             android:layout_height="45dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/icon_reset"
-            android:contentDescription="none"
+            android:contentDescription="@string/none"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_previous"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:text="What country does this flag belong to?"
+                android:text="@string/what_country_does_this_flag_belong_to"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
@@ -80,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/image"
                 android:maxHeight="150dp"
                 android:padding="5dp"
                 android:scaleType="centerCrop"
@@ -110,7 +111,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="15dp"
-                    android:text="0/10"
+                    android:text="@string/_0_10"
                     android:textColorHint="@color/black"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -125,7 +126,7 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:padding="5dp"
-                android:text="Hint"
+                android:text="@string/hint"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -146,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:padding="20dp"
                     android:fontFamily="@font/poppins"
-                    android:text="This is a hint."
+                    android:text="@string/this_is_a_hint"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </androidx.cardview.widget.CardView>
@@ -160,7 +161,7 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="VALUE"
+                android:text="@string/value"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -173,7 +174,7 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="VALUE"
+                android:text="@string/value"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -186,7 +187,7 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="VALUE"
+                android:text="@string/value"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -199,7 +200,7 @@
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="VALUE"
+                android:text="@string/value"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -211,7 +212,7 @@
                 android:background="@color/teal_700"
                 android:fontFamily="@font/poppins_bold"
                 android:padding="5dp"
-                android:text="SUBMIT"
+                android:text="@string/submit"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -219,7 +220,7 @@
                 android:id="@+id/btn_cheat"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:text="Cheat"
+                android:text="@string/cheat"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_bold"
                 android:padding="10dp"
@@ -234,7 +235,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
                 android:fontFamily="@font/poppins"
-                android:text="Cheat Tokens: 3"
+                android:text="@string/cheat_tokens_3"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"

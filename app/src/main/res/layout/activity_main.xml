@@ -19,7 +19,7 @@
                     android:layout_margin="10dp"
                     android:fontFamily="@font/poppins_black_italic"
                     android:gravity="center"
-                    android:text="GeoQuiz"
+                    android:text="@string/geoquiz"
                     android:textColor="@color/white"
                     android:textSize="80sp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_black_italic"
                     android:gravity="center"
-                    android:text="Unearth Knowledge, One Quiz at a Time"
+                    android:text="@string/unearth_knowledge_one_quiz_at_a_time"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     app:layout_constraintTop_toBottomOf="@id/tv_geoquiz"
@@ -45,7 +45,7 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:adjustViewBounds="true"
-                    android:contentDescription="Logo"
+                    android:contentDescription="@string/logo"
                     android:scaleType="centerCrop"
                     android:src="@drawable/iv_quiz_logo"
                     app:layout_constraintTop_toBottomOf="@id/tv_knowledge"
@@ -72,7 +72,7 @@
                             android:background="@color/teal_700"
                             android:fontFamily="@font/poppins_bold"
                             android:padding="10dp"
-                            android:text="START"
+                            android:text="@string/start"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 
@@ -84,7 +84,7 @@
                             android:background="@color/teal_700"
                             android:fontFamily="@font/poppins_bold"
                             android:padding="10dp"
-                            android:text="HISTORY"
+                            android:text="@string/history"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 
@@ -96,7 +96,7 @@
                             android:background="@color/teal_700"
                             android:fontFamily="@font/poppins_bold"
                             android:padding="10dp"
-                            android:text="EXIT"
+                            android:text="@string/exit"
                             android:textColor="@color/white"
                             android:textSize="20sp" />
                 </LinearLayout>
