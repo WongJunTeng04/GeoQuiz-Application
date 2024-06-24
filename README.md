@@ -91,7 +91,7 @@ Contributions are welcome! You have free reign over what you want to contribute 
 
 ## License
 
-This project is licensed under the [MIT License](link-to-license). It is open-sourced so contributions and alterations to code is up to you. Go have fun! Credit me though :D
+This project is licensed under the [MIT License](MIT License). It is open-sourced so contributions and alterations to code is up to you. Go have fun! Credit me though :D
 
 ## Contact Information
 
