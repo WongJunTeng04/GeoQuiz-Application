@@ -32,37 +32,26 @@ What is GeoQuiz?
 8. **Cheats**: If you’re stuck, press the cheat button to reveal the correct answer. 🧠🔍
 
 ## Demo
-- **Starting the quiz**:
 
-  ![Starting the quiz](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/400e91ec-4542-429b-a022-fd5a655411c0)
-
-- **View History**:
-  
-  ![View History](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/44e53bef-aa36-4220-a3f7-30e5338b3438)
-
-- **Exit**:
-  
-  ![Exit](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/3ff58c5e-24e7-4494-b42d-2193426641ab)
-  
-- **Hint**:
-  
-  ![Hint](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/c4e29f09-c774-40a9-8e34-27cc5af6700e)
-
-- **Reset**:
-  
-  ![Reset](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/6a3b0269-0f8e-4f3c-96a5-343096c137c3)
-  
-- **Navigation**:
-  
-  ![Navigation](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/17c0e2ef-3518-4dfa-8a20-90465d535e71)
-  
-- **Review**:
-  
-  ![Review](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/ef239ad7-3859-469d-9c90-c3928aa385f9)
-
-- **Cheats**:
-  
-  ![Cheats](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/905377ee-d0f8-4f27-9c8e-e1c40fd5fd45)
+<table>
+  <tr>
+	  <th>Start Quiz, History Page, Exit</th>
+    <td><img src= "https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/400e91ec-4542-429b-a022-fd5a655411c0" width="300"/></td>
+    <td><img src= "https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/44e53bef-aa36-4220-a3f7-30e5338b3438" width="300"/></td>
+    <td><img src= "https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/3ff58c5e-24e7-4494-b42d-2193426641ab" width="300"/></td>
+  </tr>
+  <tr>
+	  <th>Quiz: Hint, Reset, Navigation</th>
+    <td><img src= "https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/400e91ec-4542-429b-a022-fd5a655411c0" width="300"/></td>
+    <td><img src= "https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/6a3b0269-0f8e-4f3c-96a5-343096c137c3" width="300"/></td>
+    <td><img src= "https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/17c0e2ef-3518-4dfa-8a20-90465d535e71" width="300"/></td>
+  </tr>
+  <tr>
+	  <th>Review, Cheats</th>
+    <td><img src= "https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/ef239ad7-3859-469d-9c90-c3928aa385f9" width="300"/></td>
+    <td><img src= "https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/905377ee-d0f8-4f27-9c8e-e1c40fd5fd45" width="300"/></td>
+  </tr>
+</table>
 
 ## Screenshots
 <table>
