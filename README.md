@@ -56,14 +56,17 @@
 ## 📸 Screenshots
 <table>
   <tr>
+	  <th>Home and History</th>
     <td><img src="https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/a7b8b312-6b43-4242-bbb7-59d9457e73a4" alt="Screenshot 1" width="300"/></td>
     <td><img src="https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/599b47da-b7db-409c-aec9-3edd36f70884" alt="Screenshot 2" width="300"/></td>
   </tr>
   <tr>
+	  <th>Review and Exit</th>
     <td><img src="https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/1012bda4-9cbf-4930-b3a4-875610652da7" alt="Screenshot 3" width="300"/></td>
     <td><img src="https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/be980fcc-9743-4e2a-8352-e0ca5636070e" alt="Screenshot 4" width="300"/></td>
   </tr>
-	<tr>
+  <tr>
+	<th>Quiz and Completed Quiz</th>
     <td><img src="https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/b92c1085-404c-4891-8266-888d1bec7131" alt="Screenshot 5" width="300"/></td>
     <td><img src="https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/1690fc03-f7cb-44c8-91ab-d3936dfa3834" alt="Screenshot 6" width="300"/></td>
   </tr>
@@ -78,7 +81,7 @@
 
 Contributions are welcome! You have free reign over what you want to contribute to the code!
 
-## 👮🏻‍♂️ License
+## 🗒️ License
 
 This project is licensed under the [MIT License](MIT-LICENSE.txt). It is open-sourced so contributions and alterations to code is up to you. Go have fun! Credit me though :D
 
