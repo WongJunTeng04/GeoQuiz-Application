@@ -1,11 +1,11 @@
 ![header](https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/50566c63-92d6-4371-aa9e-5218637ec8da)
 
-# GeoQuiz- Unearth Knowledge, One Quiz At A Time
+# 👾 GeoQuiz- Unearth Knowledge, One Quiz At A Time
 
-What is GeoQuiz?
+🤔 What is GeoQuiz?
 - “GeoQuiz” is an Android app developed in Kotlin using Android Studio. It serves as a quiz platform, testing users on their geographical knowledge and general awareness. Designed to be engaging and interactive, it provides an enjoyable way for students and others to explore and learn about our world. 🌍📱
 
-## Features
+## 📚 Features
 
 - Graded quizzes on geography
 - View quiz history
@@ -14,13 +14,13 @@ What is GeoQuiz?
 - Review your answers after completing the quiz
 - Cheat to find the correct option (MAX: 3 Cheats)
 
-## Installation
+## 💿 Installation
 
 1. Clone the repository: `git clone https://github.com/WongJunTeng04/GeoQuiz-Application.git`
 2. Open the project in Android Studio
 3. Build the project and run it on an Android device or emulator
 
-## Usage
+## 📝 Usage
 
 1. **Starting the quiz**: Launch the app, and it will display the quiz’s starting page. Press “Start” to begin your quiz.
 2. **View History**: From the home screen, select the “History” button to view your past quiz results.
@@ -31,7 +31,7 @@ What is GeoQuiz?
 7. **Review**: After completing the quiz, go to the history menu and select “Review” to revisit your previous attempts.
 8. **Cheats**: If you’re stuck, press the cheat button to reveal the correct answer. 🧠🔍
 
-## Demo
+## ✨ Demo
 
 <table>
   <tr>
@@ -53,7 +53,7 @@ What is GeoQuiz?
   </tr>
 </table>
 
-## Screenshots
+## 📸 Screenshots
 <table>
   <tr>
     <td><img src="https://github.com/WongJunTeng04/GeoQuiz-Application/assets/151650892/a7b8b312-6b43-4242-bbb7-59d9457e73a4" alt="Screenshot 1" width="300"/></td>
@@ -69,19 +69,19 @@ What is GeoQuiz?
   </tr>
 </table>
 
-## Technologies Used
+## 👨🏻‍💻 Technologies Used
 
 - Kotlin
 - Android Studio
 
-## Contributing
+## 🏘️ Contributing
 
 Contributions are welcome! You have free reign over what you want to contribute to the code!
 
-## License
+## 👮🏻‍♂️ License
 
 This project is licensed under the [MIT License](MIT-LICENSE.txt). It is open-sourced so contributions and alterations to code is up to you. Go have fun! Credit me though :D
 
-## Contact Information
+## ℹ️ Contact Information
 
 For more information, please contact [Wong Jun Teng](mailto:junteng.wong01@gmail.com).
